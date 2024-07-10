@@ -64,24 +64,42 @@ func main() {
 func run(commonOptions *harvesterconfig.CommonOptions, options *config.Options) error {
 	logrus.Info("Starting webhook server")
 
+	// Debug log messages for troubleshooting
+	logrus.Debugf("Harvester: Starting run function")
+
+	// Setup signal handling for graceful shutdown
 	ctx := signals.SetupSignalContext()
 
+	// More debug log messages
+	logrus.Debugf("Harvester: Signal context setup complete")
+
+	// Retrieve Kubernetes client configuration
 	kubeConfig, err := apiserver.GetConfig(commonOptions.KubeConfig)
 	if err != nil {
 		return fmt.Errorf("failed to find kubeconfig: %v", err)
 	}
 
+	// More debug log messages
+	logrus.Debugf("Harvester: Kubernetes configuration obtained from: %v", commonOptions.KubeConfig)
+
+	// Retrieve Kubernetes REST client configuration
 	restCfg, err := kubeConfig.ClientConfig()
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to get Kubernetes client config: %v", err)
 	}
 
-	logrus.Debugf("Harvester controller username: %s", options.HarvesterControllerUsername)
-
+	// Create and start the webhook server
 	s := server.New(ctx, restCfg, options)
+
 	if err := s.ListenAndServe(); err != nil {
-		return err
+		return fmt.Errorf("failed to start webhook server: %v", err)
 	}
+
+	// Wait for signal to gracefully shutdown
 	<-ctx.Done()
+
+	// Debug log message to indicate graceful shutdown
+	logrus.Debugf("Harvester: Shutdown completed")
+
 	return nil
 }
