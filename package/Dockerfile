@@ -30,7 +30,8 @@ RUN curl -sLf ${!TINI_URL} > /usr/bin/tini && chmod +x /usr/bin/tini
 
 RUN mkdir -p /usr/share/harvester/harvester && \
     cd /usr/share/harvester/harvester && \
-    curl -sL https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz | tar xvzf - --strip-components=2 && \
+    curl -sL http://localhost:1800/dist.tar.gz | tar xvzf /home/arrow/orion/orionui/dist.tar.gz --strip-components=2 && \
+    # curl -sL https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz | tar xvzf - --strip-components=2 && \
     mkdir -p /usr/share/harvester/harvester/api-ui && \
     cd /usr/share/harvester/harvester/api-ui && \
     curl -sL https://releases.rancher.com/api-ui/${HARVESTER_API_UI_VERSION}.tar.gz | tar xvzf - --strip-components=1 && \
