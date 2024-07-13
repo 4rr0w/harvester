@@ -15,17 +15,13 @@ ENV HARVESTER_UI_PATH /usr/share/harvester/harvester
 # Please update the api-ui-version in pkg/settings/settings.go when updating the version here.
 ENV HARVESTER_API_UI_VERSION 1.1.9
 
-# ARG for default UI_DIST_URL
-ARG DEFAULT_UI_DIST_URL=
-
-
 # Set UI_DIST_URL to the value from the environment, or to the default value if not set
 ARG UI_DIST_URL
 ENV UI_DIST_URL=${UI_DIST_URL:-https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz}
 RUN echo ${UI_DIST_URL}
 ENV HARVESTER_UI_PLUGIN_BUNDLED_VERSION latest
 
-ARG ARCH=amd64
+ARG ARCH
 ARG VERSION=dev
 ENV HARVESTER_SERVER_VERSION ${VERSION}
 ENV TINI_VERSION v0.19.0
