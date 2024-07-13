@@ -15,6 +15,14 @@ ENV HARVESTER_UI_PATH /usr/share/harvester/harvester
 # Please update the api-ui-version in pkg/settings/settings.go when updating the version here.
 ENV HARVESTER_API_UI_VERSION 1.1.9
 
+# ARG for default UI_DIST_URL
+ARG DEFAULT_UI_DIST_URL=
+
+
+# Set UI_DIST_URL to the value from the environment, or to the default value if not set
+ARG UI_DIST_URL
+ENV UI_DIST_URL=${UI_DIST_URL:-https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz}
+RUN echo ${UI_DIST_URL}
 ENV HARVESTER_UI_PLUGIN_BUNDLED_VERSION latest
 
 ARG ARCH=amd64
@@ -30,7 +38,7 @@ RUN curl -sLf ${!TINI_URL} > /usr/bin/tini && chmod +x /usr/bin/tini
 
 RUN mkdir -p /usr/share/harvester/harvester && \
     cd /usr/share/harvester/harvester && \
-    curl -sL http://192.168.2.163:1800/dist.tar.gz | tar xvzf - --strip-components=2 && \
+    curl -sL ${UI_DIST_URL} | tar xvzf - --strip-components=2 && \
     # curl -sL https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz | tar xvzf - --strip-components=2 && \
     mkdir -p /usr/share/harvester/harvester/api-ui && \
     cd /usr/share/harvester/harvester/api-ui && \
