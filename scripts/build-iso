@@ -9,7 +9,7 @@ echo "Start building ISO image"
 
 HARVESTER_INSTALLER_VERSION=master
 
-git clone --branch ${HARVESTER_INSTALLER_VERSION} --single-branch --depth 1 https://github.com/4rr0w/orion_installer.git ../harvester-installer
+git clone --branch ${HARVESTER_INSTALLER_VERSION} --single-branch --depth 1 https://github.com/4rr0w/harvester-installer.git ../harvester-installer
 
 cd ../harvester-installer/scripts
 

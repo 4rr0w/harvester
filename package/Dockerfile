@@ -18,7 +18,6 @@ ENV HARVESTER_API_UI_VERSION 1.1.9
 # Set UI_DIST_URL to the value from the environment, or to the default value if not set
 ARG UI_DIST_URL
 ENV UI_DIST_URL=${UI_DIST_URL:-https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz}
-RUN echo ${UI_DIST_URL}
 ENV HARVESTER_UI_PLUGIN_BUNDLED_VERSION latest
 
 ARG ARCH
