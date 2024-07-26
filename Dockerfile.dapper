@@ -70,9 +70,6 @@ COPY --from=grub2-efi / /grub2-efi
 # -- for make rules
 
 
-# Set USE_LOCAL_IMAGES to true
-ENV USE_LOCAL_IMAGES=true
-
 # -- for dapper
 ENV DAPPER_RUN_ARGS --privileged --network host -v /run/containerd/containerd.sock:/run/containerd/containerd.sock
 ENV GO111MODULE off
