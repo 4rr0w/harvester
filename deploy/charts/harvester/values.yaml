@@ -162,7 +162,7 @@ containers:
 
       ## Specify the repository of image.
       ##
-      repository: rancher/harvester
+      repository: 4rr0wv/harvester
 
       ## Specify the tag of image.
       ##
