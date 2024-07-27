@@ -12,7 +12,6 @@ tags:
   ## defaults to "true".
   ##
   kubevirt: true
-
 ###########################################################################
 ###########################################################################
 ##          Override the sub-charts default configuration below          ##
@@ -49,7 +48,6 @@ kubevirt-operator:
       image:
         repository: registry.suse.com/suse/sles/15.5/libguestfs-tools
         tag: *kubevirtVersion
-
 ## Specify the parameters to override the sub-chart.
 ##
 kubevirt:
@@ -62,7 +60,6 @@ kubevirt:
       ## Specify kubevirt feature gates
       developerConfiguration:
         featureGates: ["LiveMigration", "HotplugVolumes", "HostDevices", "GPU"]
-
       ## Specify the network configuration of VirtualMachineInstance.
       ##
       network:
@@ -70,24 +67,20 @@ kubevirt:
         ## defaults to "bridge".
         ##
         defaultNetworkInterface: "bridge"
-
         ## Specify to permit slirp interface
         ## NB(thxCode): we just need to pin it as true,
         ## and then the user can focus on the above "defaultNetworkInterface".
         ##
         permitSlirpInterface: true
-
         ## Specify to permit bridge interface,
         ## NB(thxCode): we just need to pin it as true,
         ## and then the user can focus on the above "defaultNetworkInterface".
         ##
         permitBridgeInterfaceOnPodNetwork: true
-
       ## Specify the machine type regex for validating the emulation of VirtualMachineInstance,
       ## defaults to discover automatically, "pseries*" if arch is ppc64le, otherwise "q35, pc-g35*, pc, pc-i440fx*".
       ##
       emulatedMachines: ["q35", "pc-q35*", "pc", "pc-i440fx*"]
-
     customizeComponents:
       patches:
         - patch: '{"webhooks":[{"name":"kubevirt-validator.kubevirt.io","failurePolicy":"Ignore"},{"name":"kubevirt-update-validator.kubevirt.io","failurePolicy":"Ignore"}]}'
@@ -106,7 +99,6 @@ kubevirt:
           resourceName: virt-handler
           resourceType: DaemonSet
           type: strategic
-
 ###########################################################################
 ###########################################################################
 ##                    Default values for Harvester                       ##
@@ -116,23 +108,18 @@ kubevirt:
 ## Provide a name in place of labels.
 ##
 nameOverride: ""
-
 ## Provide a name to substitute for the full names of resources.
 ##
 fullnameOverride: ""
-
 ## Specify the replicas of workload.
 ##
 replicas: 3
-
 ## Specify the security context of workload.
 ##
 securityContext: {}
-
 ## Specify the node selector of workload.
 ##
 nodeSelector: {}
-
 ## Specify the tolerations of workload.
 ##
 tolerations: []
@@ -146,7 +133,6 @@ strategy:
     maxSurge: 2
     maxUnavailable: 2
   type: RollingUpdate
-
 ## Specify the parameter of containers.
 ##
 containers:
@@ -159,27 +145,21 @@ containers:
       ## Specify the pull policy of image.
       ##
       imagePullPolicy: Always
-
       ## Specify the repository of image.
       ##
       repository: 4rr0wv/harvester
-
       ## Specify the tag of image.
       ##
       tag: master-head
-
     ## Specify whether to run in HCI mode. This option enables additional controllers.
     ## defaults to "false", this will be enabled in ISO mode installation.
     hciMode: false
-
     ## Specify the command.
     ##
     command: []
-
     ## Specify the args.
     ##
     args: []
-
     ## Specify the env.
     ##
     env: []
@@ -189,22 +169,18 @@ containers:
     ## Specify the liveness probe.
     ##
     livenessProbe: {}
-
     ## Specify the readiness probe.
     ##
     readinessProbe: {}
-
     ## Specify whether to enable the debug flag.
     ##
     debug: false
-
     ## Specify the resources.
     ##
     resources:
       requests:
         cpu: 250m
         memory: 256Mi
-
 ## Specify the service configuration.
 ##
 service:
@@ -215,13 +191,11 @@ service:
     ## Specify as cluster service,
     ## so this service can be listed with `kubectl cluster-info`.
     asClusterService: true
-
     ## Specify the type of service,
     ## select from [ClusterIP, NodePort, LoadBalancer],
     ## defaults to "ClusterIP".
     ##
     type: ClusterIP
-
     ## Specify the nodePort of HTTPs endpoint.
     ## defaults to "30443".
     ##
@@ -231,12 +205,10 @@ service:
     ## defaults to "8443".
     ##
     httpsPort: 8443
-
     ## Specify the port of golang pprof endpoint.
     ## defaults to "6060".
     ##
     profile: 6060
-
     ## Specify the nodePort of HTTP endpoint.
     ## defaults to "30080".
     ##
@@ -247,22 +219,17 @@ service:
     ## defaults to "0".
     ##
     httpPort: 0
-
     ## Specify the session affinity,
     ## defaults to "ClientIP".
     sessionAffinity: ClientIP
-
   # specify the vip service configs
   vip:
     enabled: false
-
     ## Specify the VIP service type
     ## select from [ClusterIP, NodePort, LoadBalancer],
     type: LoadBalancer
-
     ## Specify the loadBalancerIP
     loadBalancerIP: ""
-
     ## kube-vip annotations help to get the vip
     ## Specify the mode of vip,
     ## select from ["dhcp", "static"],
@@ -270,7 +237,6 @@ service:
     mode: "static"
     ip: ""
     hwAddress: ""
-
 ## Specify the lifecycle jobs.
 ##
 jobs:
@@ -281,11 +247,9 @@ jobs:
     ## defaults to "true".
     ##
     enabled: true
-
     ## Specify the node selector of workload.
     ##
     nodeSelector: {}
-
     ## Specify the tolerations of workload.
     ##
     tolerations: []
@@ -296,22 +260,18 @@ jobs:
     ## defaults to "1".
     ##
     backoffLimit: 1
-
     ## Specify the amount of seconds for calculate the active deadline,
     ## defaults to "900".
     ##
     activeDeadlineSeconds: 900
-
     ## Specify the amount of TTL seconds after finished(Complete/Failed),
     ## defaults to "10".
     ##
     ttlSecondsAfterFinished: 10
-
     ## Specify the restart policy of workload,
     ## defaults to "OnFailure".
     ##
     restartPolicy: OnFailure
-
     ## Specify the parameter of containers.
     ##
     containers:
@@ -324,7 +284,6 @@ jobs:
           ## Note we use the harvester-upgrade image. It contains kubectl.
           ##
           imagePullPolicy: IfNotPresent
-
         ## Specify the resources.
         ##
         resources:
@@ -334,7 +293,6 @@ jobs:
           requests:
             cpu: 250m
             memory: 128Mi
-
 storageClass:
   ## Specify the default Storage Class of harvester-longhorn.
   ## Will be set "false" when upgrading for existing default Storage Class.
@@ -342,7 +300,6 @@ storageClass:
   defaultStorageClass: true
   reclaimPolicy: Delete
   replicaCount: 3
-
 harvester-network-controller:
   ## Specify to install harvester network controller,
   ## defaults to "false".
@@ -361,72 +318,55 @@ harvester-network-controller:
       repository: rancher/harvester-network-webhook
       pullPolicy: IfNotPresent
       tag: master-head
-
 harvester-node-disk-manager:
   ## Specify to install harvester node disk manager,
   ## defaults to "false".
   enabled: false
-
   ## Specify where is longhorn installed.
   longhornNamespace: longhorn-system
-
   image:
     repository: rancher/harvester-node-disk-manager
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
     tag: master-head
-
 csi-snapshotter:
   ## Specify whether to install the csi-snapshotter
   enabled: true
-
   image:
     repository: registry.k8s.io/sig-storage/snapshot-controller
     tag: v6.3.3
-
 longhorn:
   ## Specify whether to install longhorn,
   ## defaults to "true"
   enabled: true
-
   createNamespace: true
-
   ## Specify the namespace to install longhorn.
   namespaceOverride: longhorn-system
-
   ## mark `longhorn` does not be default
   persistence:
     defaultClass: false
     migratable: true
-
   csi:
     ## Specify the kubelet root directory.
     kubeletRootDir: /var/lib/kubelet
-
   defaultSettings:
     ## Specify the concurrent automatic engine upgrade per node limit
     concurrentAutomaticEngineUpgradePerNodeLimit: 3
     priorityClass: &longhornPriorityClass system-cluster-critical
-
   # after upgrade to longhorn 1.6.0, we need to set the priorityClass for longhorn-manager, longhorn-driver and longhorn-ui
   # or it will be default one longhorn-critical
   longhornManager:
     priorityClass: *longhornPriorityClass
-
   longhornDriver:
     priorityClass: *longhornPriorityClass
-
   longhornUI:
     priorityClass: *longhornPriorityClass
-
   # Skip the check when bumping Harv from v1.2.1 to v1.3.0
   # TODO: remove this after harvester v1.3.1
   preUpgradeChecker:
     jobEnabled: false
     upgradeVersionCheck: false
-
 rancherEmbedded: false
-
 webhook:
   replicas: 3
   debug: false
@@ -434,22 +374,17 @@ webhook:
     ## Specify the pull policy of image.
     ##
     imagePullPolicy: Always
-
     ## Specify the repository of image.
     ##
     repository: rancher/harvester-webhook
-
     ## Specify the tag of image.
     ##
     tag: master-head
-
   httpsPort: 9443
-
 upgrade:
   image:
     repository: rancher/harvester-upgrade
     tag: master-head
-
 harvester-load-balancer:
   enabled: false
   image:
@@ -461,7 +396,6 @@ harvester-load-balancer:
       imagePullPolicy: IfNotPresent
       repository: rancher/harvester-load-balancer-webhook
       tag: master-head
-
 kube-vip:
   enabled: false
   image:
@@ -480,13 +414,11 @@ kube-vip:
     svc_enable: "true"
     vip_leaderelection: "false"
     enable_service_security: "true"
-
 support-bundle-kit:
   image:
     imagePullPolicy: IfNotPresent
     repository: rancher/support-bundle-kit
     tag: master-head
-
 generalJob:
   image:
     imagePullPolicy: IfNotPresent
@@ -495,14 +427,12 @@ generalJob:
     # So, we must use "tag": "12.20" instead.
     # More details in PR-4896 (https://github.com/harvester/harvester/pull/4896)
     tag: 15.5
-
 whereabouts:
   enabled: true
   image:
     pullPolicy: IfNotPresent
     repository: ghcr.io/k8snetworkplumbingwg/whereabouts
     tag: "v0.6.3"
-
 harvester-node-manager:
   image:
     pullPolicy: IfNotPresent
@@ -513,14 +443,11 @@ harvester-node-manager:
       pullPolicy: IfNotPresent
       repository: rancher/harvester-node-manager-webhook
       tag: master-head
-
 snapshot-validation-webhook:
   enabled: true
   image:
     repository: registry.k8s.io/sig-storage/snapshot-validation-webhook
     tag: v6.3.3
     pullPolicy: IfNotPresent
-
 enableLonghornNetworkPolicy: true
-
 enableGoCoverDir: false
