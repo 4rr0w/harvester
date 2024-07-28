@@ -15,7 +15,7 @@ source $SCRIPTS_DIR/version
 cd $UPGRADE_DIR
 
 
-
+# $REPO="4rr0wv"
 IMAGE=${REPO}/harvester-upgrade:${TAG}
 DOCKERFILE=Dockerfile
 if [ -e ${DOCKERFILE}.${ARCH} ]; then
