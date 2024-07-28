@@ -376,14 +376,14 @@ webhook:
     imagePullPolicy: Always
     ## Specify the repository of image.
     ##
-    repository: rancher/harvester-webhook
+    repository: 4rr0wv/harvester-webhook
     ## Specify the tag of image.
     ##
     tag: master-head
   httpsPort: 9443
 upgrade:
   image:
-    repository: rancher/harvester-upgrade
+    repository: 4rr0wv/harvester-upgrade
     tag: master-head
 harvester-load-balancer:
   enabled: false
