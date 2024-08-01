@@ -30,7 +30,7 @@ if [[ -z "$DIRTY" && -n "$GIT_TAG" ]]; then
     APP_VERSION="${GIT_TAG}"
     CHART_VERSION="${GIT_TAG}"
 else
-    IMAGE_PUSH_TAG="${COMMIT_BRANCH_FORMATTED}-head"
+    IMAGE_PUSH_TAG="${COMMIT_BRANCH_FORMATTED}"
     APP_VERSION="${COMMIT_BRANCH}-${COMMIT}${DIRTY}"
     CHART_VERSION="v0.0.0-${COMMIT_BRANCH_FORMATTED}-${COMMIT}${DIRTY}"
 fi
@@ -53,7 +53,7 @@ fi
 
 SUFFIX="-${ARCH}"
 
-TAG=${TAG:-${VERSION}${SUFFIX}}
+TAG=${TAG:-latest}
 REPO=${REPO:-4rr0wv}
 
 if echo $TAG | grep -q dirty; then
