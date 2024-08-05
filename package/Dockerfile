@@ -17,6 +17,7 @@ ENV HARVESTER_API_UI_VERSION 1.1.9
 
 ENV HARVESTER_UI_PLUGIN_BUNDLED_VERSION latest
 
+
 ARG ARCH=amd64
 ARG VERSION=dev
 ENV HARVESTER_SERVER_VERSION ${VERSION}
@@ -30,7 +31,7 @@ RUN curl -sLf ${!TINI_URL} > /usr/bin/tini && chmod +x /usr/bin/tini
 
 RUN mkdir -p /usr/share/harvester/harvester && \
     cd /usr/share/harvester/harvester && \
-    curl -sL https://releases.rancher.com/harvester-ui/dashboard/${HARVESTER_UI_VERSION}.tar.gz | tar xvzf - --strip-components=2 && \
+    curl -sL https://github.com/4rr0w/dashboard/raw/master/master.tar.gz | tar xvzf - --strip-components=2 && \
     mkdir -p /usr/share/harvester/harvester/api-ui && \
     cd /usr/share/harvester/harvester/api-ui && \
     curl -sL https://releases.rancher.com/api-ui/${HARVESTER_API_UI_VERSION}.tar.gz | tar xvzf - --strip-components=1 && \
