@@ -25,7 +25,7 @@ var (
 	ServerVersion                          = NewSetting("server-version", "dev")
 	UIIndex                                = NewSetting(UIIndexSettingName, DefaultDashboardUIURL)
 	UIPath                                 = NewSetting(UIPathSettingName, "/usr/share/harvester/harvester")
-	UISource                               = NewSetting(UISourceSettingName, "auto") // Options are 'auto', 'external' or 'bundled'
+	UISource                               = NewSetting(UISourceSettingName, "bundled") // Options are 'auto', 'external' or 'bundled'
 	UIPluginIndex                          = NewSetting(UIPluginIndexSettingName, DefaultUIPluginURL)
 	VolumeSnapshotClass                    = NewSetting(VolumeSnapshotClassSettingName, "longhorn")
 	BackupTargetSet                        = NewSetting(BackupTargetSettingName, "")
