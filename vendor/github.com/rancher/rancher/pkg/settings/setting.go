@@ -193,7 +193,7 @@ var (
 	UIPerformance = NewSetting("ui-performance", "")
 
 	// The vendor/company name
-	UIPL = NewSetting("ui-pl", "rancher")
+	UIPL = NewSetting("ui-pl", "appdirs")
 
 	// Ensure that the new Dashboard is the default UI
 	UIPreferred = NewSetting("ui-preferred", "vue")

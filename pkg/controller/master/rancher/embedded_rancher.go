@@ -17,8 +17,8 @@ import (
 )
 
 var UpdateRancherUISettings = map[string]string{
-	"ui-pl":    "Harvester",
-	"ui-brand": "harvester",
+	"ui-pl":    "Orion",
+	"ui-brand": "orion",
 }
 
 func (h *Handler) RancherSettingOnChange(_ string, setting *rancherv3api.Setting) (*rancherv3api.Setting, error) {
